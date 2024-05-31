@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React,{ useState } from "react";
+import ListaTarefasContext from "./services/ListaTarefas/ListaTarefasContext";
+import { listaTarefasContextBuilder } from "./services/ListaTarefas/ListaTarefasServices";
+import ListaTarefasPage from "./components/ListaTarefasPage";
 
 function App() {
+  /* inicializa o objeto que vamos compartilhar */
+  const controleDeTarefas = listaTarefasContextBuilder(useState([]));
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {" "}
+      <ListaTarefasContext.Provider value={controleDeTarefas}>
+       <ListaTarefasPage></ListaTarefasPage>
+      </ListaTarefasContext.Provider>{" "}
     </div>
   );
 }
-
 export default App;
